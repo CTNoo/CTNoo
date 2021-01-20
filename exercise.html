@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout</title>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.ico"/>
+    
+    <!-- Get JQuery, Paint, confetti -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script>if (CSS && 'paintWorklet' in CSS) CSS.paintWorklet.addModule('https://unpkg.com/smooth-corners')</script>
+    
+    <!--  https://www.cssscript.com/confetti-falling-animation/ -->
+    <script src="confetti.min.js"></script> 
+    
+    <link rel="stylesheet" href="exercise.css">
+    
+    <script>
+        //Dump data as {{var}} or something
+        //Make sure to use JSON encoding (json.dumps())
+        // const sets = {{ json.dumps(data) }};
+        
+        // Data
+        const sets = [ // array
+          // set 1
+          { // object (dict in Py)
+            name: 'Setname1',
+            exercises: [
+              {
+                name: 'Situps1',
+                duration: 2,
+              },
+              {
+                name: 'Crunches1',
+                duration: 2,
+              },
+              {
+                name: 'Gewichtheffen1',
+                duration: 2,
+              },
+            ]
+          },
+          // set 2
+          {
+            name: 'Setname2',
+            exercises: [
+              {
+                name: 'Situps2',
+                duration: 2,
+                repetitions: 2,
+                bonusTime: 10,
+              },
+              {
+                name: 'Crunches2',
+                duration: 2,
+              },
+              {
+                name: 'Gewichtheffen2',
+                duration: 2,
+              },
+            ]
+          },
+        ];
+    </script>
+</head>
+<body>
+    
+  <div class="containerMain">
+    <h1>Workout Name</h1>
+    <div class="containerExercise done">
+    
+        <div class="set-counter">
+            <span class="current">1</span>
+            /
+            <span class="total">4</span>
+        </div>
+        
+        <div class="exercise-counter">
+            <span class="current">2</span>
+            /
+            <span class="total">10</span>
+        </div>
+
+        <h2 class="exercise-name">Situps</h2>
+
+        <div class="donePicture">
+          <img src="FlexedBiceps.png" width="25%" alt="Flexed biceps">
+        </div>
+        
+        <div class="exercise-timer">30</div>
+        
+        <div class="buttons">
+            <button class="pause">pause</button>
+            
+            <button class="play">play</button>
+        </div>
+        
+        <div class="exercise-progress-bar">
+            <div class="track">
+                <div class="nib" style="width: 0%;"></div>
+            </div>
+        </div>
+        
+        <div class="total-progress-bar">
+            <div class="track">
+                <div class="nib" style="width: 0%;"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="containerNextExercise done">
+        <span class="next-exercise">Push-ups 10x (30s)</span>
+    </div>
+  </div>
+  
+
+
+
+  <script src="exercise.js"></script>
+
+</body>
+</html>

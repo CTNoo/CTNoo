@@ -1,0 +1,83 @@
+@font-face {
+    font-family: AnonymousPro; 
+    src: url('Anonymous Pro B.ttf');
+    /* https://www.marksimonson.com/fonts/view/anonymous-pro */
+ } 
+
+body {
+    font-family: AnonymousPro;
+    text-align: center;
+    color: rgb(255,255,255,);
+    background-color: lightgray;
+    align-items: center;
+}
+
+h1, h2, h3, h4 {line-height: 0em;}
+
+.exercise-timer {
+    font-size: 5em;
+}
+
+.id_of_element_to_toggle{display:none;}
+
+/* Define main container shapes */
+.containerMain {
+    background-color: lightslategray;
+    color: white;
+    font-size:2em;
+    padding: 0.5em;
+    max-width: 1080px;
+    margin: auto;
+    --smooth-corners: 30;
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+}
+.containerExercise {
+    background-color: lightgray;
+    color:black;
+    font-size:1em;
+    padding:0.5em;
+    --smooth-corners: 30;
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+}
+
+.containerNextExercise {
+    font-size:1em;
+    color:black;
+    font-size:1em;
+    margin-top: 0.25em;
+    padding:0.5em;
+    --smooth-corners: 10;
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+}
+
+/* Define background colours depending on workout state */
+.working {
+    background: red; // rgb(255, 80, 80);
+}
+.break {
+    background: lightgreen; // rgb(150, 255, 150);
+}
+.done {
+    background: lightskyblue; // rgb(8, 85, 252);
+}
+
+/* Define progress bars */
+.track {
+    height: 1rem;
+    background: rgba(255,255,255,0.5);
+    margin: 0.5rem;
+    --smooth-corners: 4;
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+}
+.nib {
+    height: 1rem;
+    background: rgb(255, 255, 255);
+    --smooth-corners: 4;
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+    /* min-width: 1rem; */
+}
