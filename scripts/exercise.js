@@ -9,6 +9,7 @@ let excerciseIndex = 0;
 let repetitionIndex = 0;
 let timer = 0;
 let breakTimer = 0;
+let prepTimer = prepTime;
 let interval = 0;
 let totalTimer = 0;
 let nextExercise = sets[0].exercises[1].name;
@@ -18,7 +19,7 @@ const totalExerciseDuration = sets
   .map((set) => set.exercises.map(e => e.duration).reduce((a,b)=> a+b, 0))
   .reduce((a,b) => a + b, 0);
 const totalBreakDuration = (sets.length-1)*bigPause + sets.length*(sets[0].exercises.length-1)*smallPause;
-const totalDuration = totalExerciseDuration + totalBreakDuration;
+const totalDuration = totalExerciseDuration + totalBreakDuration + prepTime;
 
 // Get references to html elements
 const $container = $('.containerExercise');
@@ -34,6 +35,8 @@ const $pauseBtn = $('button.pause');
 const $playBtn = $('button.play');
 const $donePicture = $('.donePicture');
 $donePicture.hide();
+$playBtn.hide();
+$pauseBtn.show();
 $pauseBtn.on('click', pause);
 $playBtn.on('click', play);
 
@@ -45,7 +48,7 @@ function pause() {
 }
 
 function play() {
-  interval = setInterval(update, timeDelta/100);
+  interval = setInterval(update, timeDelta);
   
   $playBtn.hide();
   $pauseBtn.show();
@@ -53,9 +56,10 @@ function play() {
 
 function update() {
 
-  $donePicture.hide();
   // Do all timer things
-  if (breakTimer<=0) {
+  if (prepTimer>=0){
+    doPrep();  
+  } else if (breakTimer<=0) {
     doWork();
   } else {
     doBreak();
@@ -66,7 +70,15 @@ function update() {
     const exercise = set.exercises[excerciseIndex];
     
     // Do all HTML update things
-    if (breakTimer > 0) { // Break
+    if (prepTimer > 0) { // Prep
+      $exerciseName.text('Prepare')
+      $exerciseTimer.text((prepTimer).toFixed(1));
+      $container
+        .removeClass('break')
+        .removeClass('working')
+        .addClass('done');
+      $exerciseProgressBarNib.css("width", "0%")
+    } else if (breakTimer > 0) { // Break
       $exerciseName.text('Break')
       $exerciseTimer.text((breakTimer).toFixed(1));
       $container
@@ -93,13 +105,12 @@ function update() {
 }
 
 
-$(document).ready(function() {
-  var btn = $(".button");
-  btn.click(function() {
-    btn.toggleClass("paused");
-    return false;
-  });
-});
+function doPrep() {
+  prepTimer -= timeDelta*1e-3;
+  totalTimer += timeDelta*1e-3;
+  nextExercise = sets[0].exercises[0].name
+  nextDuration = sets[0].exercises[0].duration
+}
 
 
 function doWork() {
@@ -112,10 +123,10 @@ function doWork() {
   .addClass('break');
 
   if (excerciseIndex == sets[setIndex].exercises.length-1) {
-    nextExercise = 'bigBreak'
+    nextExercise = 'Break'
     nextDuration = bigPause
   } else{
-    nextExercise = 'smallBreak'
+    nextExercise = 'Break'
     nextDuration = smallPause
   }
   
@@ -165,15 +176,9 @@ function doBreak(){
   .removeClass('done')
   .removeClass('break')
   .addClass('working');
-  if (excerciseIndex == 0) {
-    nextExercise = sets[setIndex].exercises[0].name
-    nextDuration = sets[setIndex].exercises[0].duration
-  } else if (excerciseIndex==sets[setIndex].exercises.length-1)
-  {}
-  else {
-    nextExercise = sets[setIndex].exercises[excerciseIndex+1].name
-    nextDuration = sets[setIndex].exercises[excerciseIndex+1].duration
-  }
+  nextExercise = sets[setIndex].exercises[excerciseIndex].name
+  nextDuration = sets[setIndex].exercises[excerciseIndex].duration
+
 }
 /*
 // Get data from server CSV

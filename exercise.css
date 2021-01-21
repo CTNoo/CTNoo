@@ -1,6 +1,6 @@
 @font-face {
     font-family: AnonymousPro; 
-    src: url('Anonymous Pro B.ttf');
+    src: url('resources/Anonymous Pro B.ttf');
     /* https://www.marksimonson.com/fonts/view/anonymous-pro */
  } 
 
@@ -21,6 +21,11 @@ h1, h2, h3, h4 {line-height: 0em;}
 .id_of_element_to_toggle{display:none;}
 
 /* Define main container shapes */
+.containerMain, .containerExercise, .containerNextExercise{
+    mask-image: paint(smooth-corners);
+    -webkit-mask-image: paint(smooth-corners);
+}
+
 .containerMain {
     background-color: lightslategray;
     color: white;
@@ -29,17 +34,14 @@ h1, h2, h3, h4 {line-height: 0em;}
     max-width: 1080px;
     margin: auto;
     --smooth-corners: 30;
-    mask-image: paint(smooth-corners);
-    -webkit-mask-image: paint(smooth-corners);
 }
+
 .containerExercise {
     background-color: lightgray;
     color:black;
     font-size:1em;
     padding:0.5em;
     --smooth-corners: 30;
-    mask-image: paint(smooth-corners);
-    -webkit-mask-image: paint(smooth-corners);
 }
 
 .containerNextExercise {
@@ -49,9 +51,17 @@ h1, h2, h3, h4 {line-height: 0em;}
     margin-top: 0.25em;
     padding:0.5em;
     --smooth-corners: 10;
-    mask-image: paint(smooth-corners);
-    -webkit-mask-image: paint(smooth-corners);
 }
+
+/* Firefox doesn't support webkit smooth-corners implementation */
+@-moz-document url-prefix() {
+    .containerMain, .containerExercise, .containerNextExercise {
+        border-radius: 1em;
+    }
+    .track, .nib {
+        border-radius: 1em;
+    }
+  }
 
 /* Define background colours depending on workout state */
 .working {
@@ -66,18 +76,23 @@ h1, h2, h3, h4 {line-height: 0em;}
 
 /* Define progress bars */
 .track {
-    height: 1rem;
     background: rgba(255,255,255,0.5);
-    margin: 0.5rem;
-    --smooth-corners: 4;
-    mask-image: paint(smooth-corners);
-    -webkit-mask-image: paint(smooth-corners);
-}
+    margin: 0.5rem;}
+
 .nib {
-    height: 1rem;
     background: rgb(255, 255, 255);
+}
+
+.track, .nib {
+    height: 1rem;
     --smooth-corners: 4;
     mask-image: paint(smooth-corners);
     -webkit-mask-image: paint(smooth-corners);
-    /* min-width: 1rem; */
 }
+
+/* Play pause button */
+.button {
+  background: transparent;
+  border: 0;  
+  outline:none
+  }
