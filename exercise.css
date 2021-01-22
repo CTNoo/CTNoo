@@ -92,7 +92,10 @@ h1, h2, h3, h4 {line-height: 0em;}
 
 /* Play pause button */
 .button {
-  background: transparent;
-  border: 0;  
-  outline:none
+  background: transparent; 
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
   }
