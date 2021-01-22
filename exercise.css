@@ -15,7 +15,7 @@ body {
 h1, h2, h3, h4 {line-height: 0em;}
 
 .exercise-timer {
-    font-size: 5em;
+    font-size: 20vh;
 }
 
 .id_of_element_to_toggle{display:none;}
@@ -29,7 +29,7 @@ h1, h2, h3, h4 {line-height: 0em;}
 .containerMain {
     background-color: lightslategray;
     color: white;
-    font-size:2em;
+    font-size:3vh;
     padding: 0.5em;
     max-width: 1080px;
     margin: auto;
@@ -39,15 +39,14 @@ h1, h2, h3, h4 {line-height: 0em;}
 .containerExercise {
     background-color: lightgray;
     color:black;
-    font-size:1em;
+    font-size:3vh;
     padding:0.5em;
     --smooth-corners: 30;
 }
 
 .containerNextExercise {
-    font-size:1em;
     color:black;
-    font-size:1em;
+    font-size:3vh;
     margin-top: 0.25em;
     padding:0.5em;
     --smooth-corners: 10;
