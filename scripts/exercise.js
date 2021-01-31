@@ -1,6 +1,6 @@
-const smallPause = 1;
-const bigPause = 2;
-const prepTime = 3;
+const smallPause = 5;
+const bigPause = 30;
+const prepTime = 5;
 const timeDelta = 10; // ms
 
 // State
